@@ -1,0 +1,3 @@
+def checkPalindroom():
+    return None
+

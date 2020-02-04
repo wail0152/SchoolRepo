@@ -1,3 +1,2 @@
 # SchoolRepo
 School projects
-test

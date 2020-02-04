@@ -25,4 +25,15 @@ def whileLoop(t, n):
         j = 0
 
 
-whileLoop(t, n)
+def forLoopFlipped(t, n):
+    s = ""
+    for i in range(n - 1):
+        amount = min(t, n - t)
+        for j in range(amount):
+            s += "*"
+        print("{:>{}}".format(s, n//2))
+        t += 1
+        s = ""
+
+
+forLoopFlipped(t, n)

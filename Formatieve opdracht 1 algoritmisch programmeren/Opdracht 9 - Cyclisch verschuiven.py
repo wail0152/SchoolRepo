@@ -1,2 +1,2 @@
 def shift(ch, n):
-    return "{0:b}".format(ord(ch) >> n) if n > 0 else "{0:b}".format(ord(ch) << abs(n))
+    return f"{ord(ch) >> n:b}" if n > 0 else f"{ord(ch) << abs(n):b}"

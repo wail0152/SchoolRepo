@@ -1,8 +1,12 @@
-n = int(input("Hoe groot wil je de piramide maken? ")) * 2
-t = 1
+try:
+    input_num = int(input("Hoe groot wil je de piramide maken? ")) * 2
+except ValueError:
+    print("Start de programma opnieuw op en vul een juiste getal in.")
+    exit()
 
 
-def forLoop(t, n):
+def for_loop(n):
+    t = 1
     for i in range(n - 1):
         amount = min(t, n - t)
         for j in range(amount):
@@ -11,7 +15,8 @@ def forLoop(t, n):
         t += 1
 
 
-def whileLoop(t, n):
+def while_loop(n):
+    t = 1
     i = 0
     j = 0
     while i < n - 1:
@@ -25,15 +30,16 @@ def whileLoop(t, n):
         j = 0
 
 
-def forLoopFlipped(t, n):
+def for_loop_flipped(n):
+    t = 1
     s = ""
     for i in range(n - 1):
         amount = min(t, n - t)
         for j in range(amount):
             s += "*"
-        print("{:>{}}".format(s, n//2))
+        print(f"{s:>{n//2}}")
         t += 1
         s = ""
 
 
-forLoopFlipped(t, n)
+for_loop_flipped(input_num)

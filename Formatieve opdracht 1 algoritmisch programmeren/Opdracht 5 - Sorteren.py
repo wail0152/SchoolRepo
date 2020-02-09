@@ -1,4 +1,4 @@
-def sortMethode(lst):
+def sort_method(lst):
     for i in range(len(lst)):
         for j in range(len(lst)):
             if lst[j] > lst[i]:

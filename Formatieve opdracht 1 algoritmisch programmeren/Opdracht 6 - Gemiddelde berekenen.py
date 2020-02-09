@@ -1,11 +1,11 @@
-def calcAverage(lst):
+def calc_average(lst):
     return sum(lst) / len(lst)
 
 
-def calcListAverage(lst):
-    num = 0
-    div = 0
+def calc_list_average(lst):
+    number_sum = 0
+    list_length = 0
     for i in lst:
-        num += sum(i)
-        div += len(i)
-    return num / div
+        number_sum += sum(i)
+        list_length += len(i)
+    return number_sum / list_length

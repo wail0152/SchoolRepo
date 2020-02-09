@@ -7,14 +7,14 @@ def count(lst, x):
 
 
 def difference(lst):
-    biggestDif = 0
+    biggest_diff = 0
     for i in range(len(lst) - 1):
-        if abs(lst[i + 1]) - abs(lst[i]) > biggestDif:
-            biggestDif = abs(lst[i + 1]) - abs(lst[i])
-    return biggestDif
+        if abs(lst[i + 1]) - abs(lst[i]) > biggest_diff:
+            biggest_diff = abs(lst[i + 1]) - abs(lst[i])
+    return biggest_diff
 
 
-def listCheck(lst):
+def list_check(lst):
     cond = False
     if count(lst, 1) > count(lst, 0) and count(lst, 0) < 12:
         cond = True

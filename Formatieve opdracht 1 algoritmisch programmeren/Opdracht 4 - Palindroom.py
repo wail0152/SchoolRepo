@@ -1,10 +1,10 @@
-def checkPalindroomSelf(s):
-    newString = ""
+def check_palindroom_self(s):
+    new_string = ""
     for i in s:
-        newString = i + newString
-    return newString == s
+        new_string = i + new_string
+    return new_string == s
 
 
-def checkPalindroomLib(s):
+def check_palindroom_lib(s):
     return "".join(list(reversed(s))) == s
 

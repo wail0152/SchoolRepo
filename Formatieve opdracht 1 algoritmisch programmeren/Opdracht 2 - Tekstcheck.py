@@ -1,13 +1,15 @@
-def checkDifferentCharIndex():
+string1 = str(input("Geef een string: "))
+string2 = str(input("Geef een string: "))
+
+
+def check_different_char_index(s1, s2):
     index = -1
-    string1 = str(input("Geef een string: "))
-    string2 = str(input("Geef een string: "))
-    shortestString = string2 if (len(string1) > len(string2)) else string1
-    for i in range(len(shortestString)):
-        if string1[i] != string2[i]:
+    shortest_string = s2 if (len(s1) > len(s2)) else s1
+    for i in range(len(shortest_string)):
+        if s1[i] != s2[i]:
             index = i
             break
     return index
 
 
-print("Het eerste verschil zit op index: " + str(checkDifferentCharIndex()))
+print("Het eerste verschil zit op index: " + str(check_different_char_index(string1, string2)))

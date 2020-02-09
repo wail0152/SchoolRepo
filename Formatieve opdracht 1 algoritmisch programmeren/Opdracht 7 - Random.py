@@ -1,10 +1,14 @@
 import random
-minRand = 0
-maxRand = 10
-randNum = random.randint(minRand, maxRand)
+min_rand = 0
+max_rand = 10
+rand_num = random.randint(min_rand, max_rand)
 
-inputNum = int(input("Raad het getal tussen {} en {}: ".format(minRand, maxRand)))
-while inputNum != randNum:
-    inputNum = int(input("Fout geraden probeer het nogmaals: "))
+try:
+    inputNum = int(input(f"Raad het getal tussen {min_rand} en {max_rand}: "))
+    while inputNum != rand_num:
+        inputNum = int(input("Fout geraden probeer het nogmaals: "))
+except ValueError:
+    print("Vul een getal in!")
+    exit()
 
-print("Goed gedaan het getal was inderdaad {}!".format(randNum))
+print(f"Goed gedaan het getal was inderdaad {rand_num}!")

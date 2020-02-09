@@ -1,10 +1,10 @@
-def caesarNumber():
+def caesar_number():
     t = str(input("Geef een tekst: "))
     r = int(input("Geef een rotatite: "))
-    newString = ""
+    new_string = ""
     for letter in t:
-        newString += chr(ord(letter) + r)
-    return newString
+        new_string += chr(ord(letter) + r)
+    return new_string
 
 
-print(caesarNumber())
+print(caesar_number())

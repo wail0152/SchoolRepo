@@ -1,11 +1,12 @@
+import math
+
+
 def vier_kwadraten(getal):
-    import math
-    n = 10000
-    for i in range(int(math.sqrt(n))):
-        for j in range(int(math.sqrt(n))):
-            for k in range(int(math.sqrt(n))):
-                for l in range(int(math.sqrt(n))):
-                    if i * 2 + j * 2 + k * 2 + l * 2 == n:
+    for i in range(int(math.sqrt(getal))):
+        for j in range(int(math.sqrt(getal))):
+            for k in range(int(math.sqrt(getal))):
+                for l in range(int(math.sqrt(getal))):
+                    if i ** 2 + j ** 2 + k ** 2 + l ** 2 == getal:
                         return [i, j, k, l]
 
 

@@ -49,11 +49,19 @@ def print_board():
 def give_feedback():
     red_pins = 0
     white_pins = 0
-    for row in range(len(game_board[current_column])):
-        if game_board[current_column][row] == shield_row[row]:
+    visited = []
+
+    for guess in range(len(game_board[current_column])):
+        if game_board[current_column][guess] == shield_row[guess]:
             red_pins += 1
-        elif game_board[current_column][row] in shield_row:
-            white_pins += 1
+            visited.append(guess)
+
+    for guess in range(len(game_board[current_column])):
+        for color in range(len(shield_row)):
+            if game_board[current_column][guess] == shield_row[color] and guess != color and color not in visited:
+                white_pins += 1
+                visited.append(color)
+
     print(f"You have {red_pins} red pins and {white_pins} white pins.")
 
 
@@ -61,4 +69,5 @@ shield_row = set_shield(rand_shield())
 running = True
 while running:
     if option == 0:
+        print("Shield row: ", shield_row)
         current_column = man_vs_ai(current_column)

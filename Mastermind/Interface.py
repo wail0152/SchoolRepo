@@ -26,6 +26,12 @@ def check_end():
         exit()
 
 
+def check_win(red):
+    if red == 4:
+        print("You have won!")
+        exit()
+
+
 def get_moves():
     moves = str(input(f"\n({10 - current_column} move(s) left) Input 4 colors with a comma:\n")).split(",")
     if len(moves) < 4:
@@ -63,11 +69,11 @@ def give_feedback():
                 visited.append(color)
 
     print(f"You have {red_pins} red pins and {white_pins} white pins.")
+    check_win(red_pins)
 
 
 shield_row = set_shield(rand_shield())
 running = True
 while running:
     if option == 0:
-        print("Shield row: ", shield_row)
         current_column = man_vs_ai(current_column)

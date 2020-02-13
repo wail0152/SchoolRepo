@@ -7,7 +7,7 @@ game_board_height = 4
 game_board = [[0 for x in range(game_board_height)] for y in range(game_board_width)]
 
 
-def set_shield(shield):
+def get_shield(shield):
     return shield
 
 

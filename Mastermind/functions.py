@@ -1,15 +1,6 @@
 from Mastermind.definitions import *
 
-game_modes = {0: "MAN VS COMPUTER", 1: "COMPUTER VS MAN"}
-option = -1
 current_column = 0
-
-while option != 0 and option != 1:
-    try:
-        option = int(input(f"Type 0 for {game_modes[0]} and 1 for {game_modes[1]}: "))
-    except ValueError:
-        print("Try again and input 0 or 1.\n")
-print(f"You have chosen {game_modes[option]}.")
 
 
 def man_vs_ai(col):
@@ -26,8 +17,8 @@ def check_end():
         exit()
 
 
-def check_win(red):
-    if red == 4:
+def check_win(rp):
+    if rp == 4:
         print("You have won!")
         exit()
 
@@ -70,10 +61,3 @@ def give_feedback():
 
     print(f"You have {red_pins} red pins and {white_pins} white pins.")
     check_win(red_pins)
-
-
-shield_row = set_shield(rand_shield())
-running = True
-while running:
-    if option == 0:
-        current_column = man_vs_ai(current_column)

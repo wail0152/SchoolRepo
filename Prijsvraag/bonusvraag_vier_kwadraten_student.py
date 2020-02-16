@@ -1,14 +1,13 @@
 import math
-import numpy
 
 
 def vier_kwadraten(getal):
     for a in range(int(math.sqrt(getal / 4))):
         rest1 = getal - (a * a)
-        for b in range(int(math.sqrt(getal / 3))):
+        for b in range(a, int(math.sqrt(getal / 3))):
             rest2 = rest1 - (b * b)
-            for c in range(int(math.sqrt(getal / 2))):
-                d = math.sqrt(rest2 - (c * c))
+            for c in range(b, int(math.sqrt(getal / 2))):
+                d = int(math.sqrt(rest2 - (c * c)))
                 if a * a + b * b + c * c + d * d == getal:
                     return [a, b, c, d]
 

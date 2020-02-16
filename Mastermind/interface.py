@@ -11,20 +11,22 @@ while option != 0 and option != 1:
 print(f"You have chosen {game_modes[option]}.")
 
 
-def man_vs_ai(col):
-    check_end()
-    game_board[col] = get_moves()
+def man_vs_ai():
+    global current_column
+    check_end(current_column, shield_row)
+    game_board[current_column] = get_moves()
     print_board()
-    give_feedback()
-    return col + 1
+    pins = get_feedback(game_board[current_column], shield_row)
+    print(f"You have {pins[0]} red pins and {pins[1]} white pins.")
+    check_win(pins[0], "You have won!")
+    current_column += 1
 
 
-def ai_vs_man(col):
-    check_end()
-    game_board[col] = get_moves()
-    print_board()
-    give_feedback()
-    return col + 1
+def ai_vs_man():
+    global current_column
+    check_end(current_column, shield_row)
+    simple_strategy(current_column, shield_row)
+    current_column += 1
 
 
 def print_board():
@@ -34,31 +36,10 @@ def print_board():
         print("")
 
 
-def give_feedback():
-    red_pins = 0
-    white_pins = 0
-    visited = []
-
-    for guess in range(len(game_board[current_column])):
-        if game_board[current_column][guess] == shield_row[guess]:
-            red_pins += 1
-            visited.append(guess)
-
-    for guess in range(len(game_board[current_column])):
-        for color in range(len(shield_row)):
-            if game_board[current_column][guess] == shield_row[color] and guess != color and color not in visited:
-                white_pins += 1
-                visited.append(color)
-
-    print(f"You have {red_pins} red pins and {white_pins} white pins.")
-    check_win(red_pins)
-    return (red_pins, white_pins)
-
-
-shield_row = get_shield(rand_shield())
+shield_row = set_shield(option)
 running = True
 while running:
     if option == 0:
-        current_column = man_vs_ai(current_column)
+        man_vs_ai()
     else:
-        current_column = ai_vs_man(current_column)
+        ai_vs_man()

@@ -12,13 +12,9 @@ color_combinations = sorted(list(itertools.product(colors, repeat=4)))
 
 def set_shield(op):
     if op == 0:
-        return get_shield(rand_shield())
+        return rand_shield()
     else:
         return get_moves(True)
-
-
-def get_shield(shield):
-    return shield
 
 
 def rand_shield():
@@ -51,22 +47,22 @@ def get_moves(shield=False):
 
 
 def get_feedback(question, sr):
-    red_pins = 0
+    black_pins = 0
     white_pins = 0
     visited = []
 
-    for guess in range(len(question)):
-        if question[guess] == sr[guess]:
-            red_pins += 1
-            visited.append(guess)
+    for question_index in range(len(sr)):
+        if question[question_index] == sr[question_index]:
+            black_pins += 1
+            visited.append(question_index)
 
-    for guess in range(len(question)):
-        for color in range(len(sr)):
-            if question[guess] == sr[color] and guess != color and color not in visited:
+    for question_index in range(len(sr)):
+        for shield_index in range(len(sr)):
+            if question[question_index] == sr[shield_index] and question_index not in visited and shield_index not in visited:
                 white_pins += 1
-                visited.append(color)
+                visited.append(shield_index)
 
-    return (red_pins, white_pins)
+    return (black_pins, white_pins)
 
 
 def simple_strategy(col, sr):

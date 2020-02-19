@@ -1,3 +1,3 @@
-Ik heb het artikel van de Universiteit Groningen gebruikt voor de simpele algoritme en de worst-case algortime.
+Ik heb het artikel van de Universiteit Groningen(YET ANOTHER MASTERMIND STRATEGY) gebruikt voor de simpele algoritme en de worst-case algortime.
 Verder heb ik https://www.youtube.com/watch?v=dMHxyulGrEk gebruikt om de spelregels te snappen.
-Ik heb ook https://en.wikipedia.org/wiki/Mastermind_(board_game) gebruikt voor verdere informatie.
+Ik heb ook https://en.wikipedia.org/wiki/Mastermind_(board_game) gebruikt voor verdere informatie zoals hoe ik de game informatie aan de gebruiker zal tonen.

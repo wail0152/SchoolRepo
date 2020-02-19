@@ -24,6 +24,7 @@ def ai_vs_man():
     check_end(current_column, shield_row)
     # simple_strategy(current_column, shield_row)
     worst_case(current_column, shield_row)
+    print_board()
 
 
 def print_board():

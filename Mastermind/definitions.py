@@ -43,21 +43,21 @@ def get_moves(col, breaker=False):
 def get_feedback(question, sr):
     black_pins = 0
     white_pins = 0
-    visited = []
-    visited2 = []
+    visited_shield = []
+    visited_question = []
 
     for question_index in range(len(sr)):
         if question[question_index] == sr[question_index]:
             black_pins += 1
-            visited.append(question_index)
-            visited2.append(question_index)
+            visited_shield.append(question_index)
+            visited_question.append(question_index)
 
     for question_index in range(len(sr)):
         for shield_index in range(len(sr)):
-            if question[question_index] == sr[shield_index] and shield_index not in visited and question_index not in visited2:
+            if question[question_index] == sr[shield_index] and shield_index not in visited_shield and question_index not in visited_question:
                 white_pins += 1
-                visited.append(shield_index)
-                visited2.append(question_index)
+                visited_shield.append(shield_index)
+                visited_question.append(question_index)
 
     return (black_pins, white_pins)
 
@@ -80,12 +80,18 @@ def simple_strategy(col, sr):
 
 def worst_case(col, sr):
     possible_combinations = {"0": {}, "1": {}, "2": {}, "3": {}, "4": {}}
-    test_combinatios = [['r', 'r', 'r', 'r'], ['r', 'r', 'r', 'g'], ['r', 'r', 'g', 'g'], ['r', 'r', 'g', 'b'], ['r', 'g', 'b', 'o']]
-    for com_ind in range(len(test_combinatios)):
+    question_combinatios = [['r', 'r', 'r', 'r'], ['r', 'r', 'r', 'g'], ['r', 'r', 'g', 'g'], ['r', 'r', 'g', 'b'], ['r', 'g', 'b', 'o']]
+    for com_ind in range(len(question_combinatios)):
         for color_index in range(len(color_combinations)):
-            if str(get_feedback(test_combinatios[com_ind], color_combinations[color_index])) not in possible_combinations[str(com_ind)]:
-                possible_combinations[str(com_ind)][str(get_feedback(test_combinatios[com_ind], color_combinations[color_index]))] = 1
+            if str(get_feedback(question_combinatios[com_ind], color_combinations[color_index])) not in possible_combinations[str(com_ind)]:
+                possible_combinations[str(com_ind)][str(get_feedback(question_combinatios[com_ind], color_combinations[color_index]))] = 1
             else:
-                possible_combinations[str(com_ind)][str(get_feedback(test_combinatios[com_ind], color_combinations[color_index]))] += 1
+                possible_combinations[str(com_ind)][str(get_feedback(question_combinatios[com_ind], color_combinations[color_index]))] += 1
 
-    print(possible_combinations)
+    largest_partition = [0, 0, 0, 0, 0]
+    for combo in possible_combinations:
+        for possibility in possible_combinations[combo]:
+            if possible_combinations[combo][possibility] > largest_partition[int(combo)]:
+                largest_partition[int(combo)] = possible_combinations[combo][possibility]
+
+    print(question_combinatios[largest_partition.index(min(largest_partition))])

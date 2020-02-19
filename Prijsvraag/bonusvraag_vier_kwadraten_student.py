@@ -1,14 +1,37 @@
 import math
+import numpy as np
+
+
+def create_list(size):
+    lst = np.zeros(size, dtype=int)
+    return lst
+
+
+def overwrite_list(lst, number, index):
+    lst[index] = np.sqrt(number / (index + 1))
+    return lst
 
 
 def vier_kwadraten(getal):
-    for a in range(int(math.sqrt(getal / 4))):
-        rest1 = getal - (a * a)
-        for b in range(a, int(math.sqrt(getal / 3)) - (a * a)):
-            rest2 = rest1 - (b * b)
-            for c in range(b, int(math.sqrt(getal / 2)) - (b * b)):
-                d = int(math.sqrt(rest2 - (c * c)))
-                if a * a + b * b + c * c + d * d == getal:
+    lst = create_list(4)
+    for i in range(len(lst)):
+        lst = overwrite_list(lst, getal, i)
+
+    index3 = lst[3]
+    index2 = lst[2]
+    index1 = lst[1]
+
+    for a in range(index3):
+        aq = a * a
+        rest1 = getal - (aq)
+        for b in range(a, index2 - (aq)):
+            bq = b * b
+            rest2 = rest1 - (bq)
+            for c in range(b, index1 - (bq)):
+                cq = c * c
+                d = int(math.sqrt(rest2 - (cq)))
+                dq = d * d
+                if aq + bq + cq + dq == getal:
                     return [a, b, c, d]
 
 

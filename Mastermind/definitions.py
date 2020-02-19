@@ -126,6 +126,7 @@ def own_strategy(col, sr, move):
     game_board[col] = move
     print("The computer guessed", move)
     new_combinations = []
+    newest_combinations = []
 
     for combination in color_combinations:
         if get_feedback(move, combination) == pins:
@@ -135,9 +136,10 @@ def own_strategy(col, sr, move):
 
     for combination_index in range(len(new_combinations)):
         for old_move in old_moves:
-            if get_feedback(move, old_move) != pins:
-                new_combinations.remove(new_combinations[combination_index])
+            if get_feedback(new_combinations[combination_index], old_move) == pins:
+                newest_combinations.append(new_combinations[combination_index])
 
+    new_combinations = set(new_combinations).intersection(newest_combinations)
     color_combinations.clear()
     color_combinations.extend(new_combinations)
 

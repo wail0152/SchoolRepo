@@ -13,16 +13,17 @@ print(f"You have chosen {game_modes[option]}.")
 
 def man_vs_ai():
     check_end(current_column, shield_row)
-    game_board[current_column] = get_moves()
+    game_board[current_column] = get_moves(current_column)
     print_board()
     pins = get_feedback(game_board[current_column], shield_row)
     print(f"You have {pins[0]} black pin(s) and {pins[1]} white pin(s).")
-    check_win(pins[0], "You have won!")
+    check_win(current_column, pins[0])
 
 
 def ai_vs_man():
     check_end(current_column, shield_row)
-    simple_strategy(current_column, shield_row)
+    # simple_strategy(current_column, shield_row)
+    worst_case(current_column, shield_row)
 
 
 def print_board():
@@ -32,7 +33,7 @@ def print_board():
         print("")
 
 
-shield_row = set_shield(option)
+shield_row = set_shield(current_column, option)
 running = True
 while running:
     if option == 0:

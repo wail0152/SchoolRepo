@@ -6,6 +6,7 @@ shield_row = []
 current_column = 0
 game_board = [[0 for x in range(4)] for y in range(10)]
 color_combinations = sorted(list(itertools.product(colors, repeat=4)))
+old_moves = []
 
 
 def set_shield(col, op):
@@ -80,15 +81,14 @@ def simple_strategy(col, sr, move):
 
 def worst_case(col, sr):
     possible_combinations = {"0": {}, "1": {}, "2": {}, "3": {}, "4": {}}
-    question_combinatios = [['r', 'r', 'r', 'r'], ['r', 'r', 'r', 'g'], ['r', 'r', 'g', 'g'], ['r', 'r', 'g', 'b'], ['r', 'g', 'b', 'o']]
-    test_combinatios = [['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'b'], ['a', 'a', 'b', 'b'], ['a', 'a', 'b', 'c'], ['a', 'b', 'c', 'd']]
+    question_combinations = [['r', 'r', 'r', 'r'], ['r', 'r', 'r', 'g'], ['r', 'r', 'g', 'g'], ['r', 'r', 'g', 'b'], ['r', 'g', 'b', 'o']]
 
-    for com_ind in range(len(question_combinatios)):
+    for com_ind in range(len(question_combinations)):
         for color_index in range(len(color_combinations)):
-            if str(get_feedback(question_combinatios[com_ind], color_combinations[color_index])) not in possible_combinations[str(com_ind)]:
-                possible_combinations[str(com_ind)][str(get_feedback(question_combinatios[com_ind], color_combinations[color_index]))] = 1
+            if str(get_feedback(question_combinations[com_ind], color_combinations[color_index])) not in possible_combinations[str(com_ind)]:
+                possible_combinations[str(com_ind)][str(get_feedback(question_combinations[com_ind], color_combinations[color_index]))] = 1
             else:
-                possible_combinations[str(com_ind)][str(get_feedback(question_combinatios[com_ind], color_combinations[color_index]))] += 1
+                possible_combinations[str(com_ind)][str(get_feedback(question_combinations[com_ind], color_combinations[color_index]))] += 1
 
     largest_partition = [0, 0, 0, 0, 0]
     for combo in possible_combinations:
@@ -96,20 +96,11 @@ def worst_case(col, sr):
             if possible_combinations[combo][possibility] > largest_partition[int(combo)]:
                 largest_partition[int(combo)] = possible_combinations[combo][possibility]
 
-    combo_to_check = test_combinatios[largest_partition.index(min(largest_partition))]
-    letters_combination = [combo_to_check.count('a'), combo_to_check.count('b'), combo_to_check.count('c'), combo_to_check.count('d')]
+    if largest_partition.index(min(largest_partition)) == 0:
+        simple_strategy(col, sr, color_combinations[0])
+    else:
+        simple_strategy(col, sr, question_combinations[largest_partition.index(min(largest_partition))])
 
-    check_combination = [0, 0, 0, 0]
-    right_combination = ""
-    for combination in color_combinations:
-        for letter in range(len(set(combination))):
-            check_combination[letter] = combination.count(list(sorted(set(combination), key=combination.index))[letter])
-            if check_combination == letters_combination:
-                right_combination = combination
-                break
-        else:
-            continue
-        break
 
-    print(letters_combination, test_combinatios[largest_partition.index(min(largest_partition))], right_combination, color_combinations)
-    simple_strategy(col, sr, right_combination)
+def own_strategy(col, sr):
+    return simple_strategy(col, sr, color_combinations[random.randrange(0, len(color_combinations))])

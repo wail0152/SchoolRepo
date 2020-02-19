@@ -1,3 +1,7 @@
 Ik heb het artikel van de Universiteit Groningen(YET ANOTHER MASTERMIND STRATEGY) gebruikt voor de simpele algoritme en de worst-case algortime.
 Verder heb ik https://www.youtube.com/watch?v=dMHxyulGrEk gebruikt om de spelregels te snappen.
 Ik heb ook https://en.wikipedia.org/wiki/Mastermind_(board_game) gebruikt voor verdere informatie zoals hoe ik de game informatie aan de gebruiker zal tonen.
+Verdere code heb ik allemaal zelf geschreven door middel van ervaring die ik al eerder opgedaan had, het nieuwe wat ik hierbij had geleerd is hoe je pseudocode goed systematisch moet aflezen en kan implementeren als code.
+
+Extra informatie:
+Als eigen heurestiek heb ik geprobeerd een variant te maken van de simpele algoritme waarbij ik feedback vraag voor de vorige zetten, in mijn gedachten lijkt dit logisch want als de feedback niet overeen komt kan het niet de code zijn.

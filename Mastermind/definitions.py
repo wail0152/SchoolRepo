@@ -81,15 +81,15 @@ def simple_strategy(col, sr, move):
 
 def worst_case(col, sr):
     possible_combinations = {"0": {}, "1": {}, "2": {}, "3": {}, "4": {}}
-    question_combinatios = [['r', 'r', 'r', 'r'], ['r', 'r', 'r', 'g'], ['r', 'r', 'g', 'g'], ['r', 'r', 'g', 'b'], ['r', 'g', 'b', 'o']]
-    test_combinatios = [[4, 0, 0, 0], [3, 1, 0, 0], [2, 2, 0, 0], [2, 1, 1, 0], [1, 1, 1, 1]]
+    question_combinations = [['r', 'r', 'r', 'r'], ['r', 'r', 'r', 'g'], ['r', 'r', 'g', 'g'], ['r', 'r', 'g', 'b'], ['r', 'g', 'b', 'o']]
+    test_combinations = [[4, 0, 0, 0], [3, 1, 0, 0], [2, 2, 0, 0], [2, 1, 1, 0], [1, 1, 1, 1]]
 
-    for com_ind in range(len(question_combinatios)):
+    for com_ind in range(len(question_combinations)):
         for color_index in range(len(color_combinations)):
-            if str(get_feedback(question_combinatios[com_ind], color_combinations[color_index])) not in possible_combinations[str(com_ind)]:
-                possible_combinations[str(com_ind)][str(get_feedback(question_combinatios[com_ind], color_combinations[color_index]))] = 1
+            if str(get_feedback(question_combinations[com_ind], color_combinations[color_index])) not in possible_combinations[str(com_ind)]:
+                possible_combinations[str(com_ind)][str(get_feedback(question_combinations[com_ind], color_combinations[color_index]))] = 1
             else:
-                possible_combinations[str(com_ind)][str(get_feedback(question_combinatios[com_ind], color_combinations[color_index]))] += 1
+                possible_combinations[str(com_ind)][str(get_feedback(question_combinations[com_ind], color_combinations[color_index]))] += 1
 
     largest_partition = [0, 0, 0, 0, 0]
     for combo in possible_combinations:
@@ -102,7 +102,7 @@ def worst_case(col, sr):
     counter = 0
     while right_combination == ():
         for indice in indices:
-            letters_combination = test_combinatios[indice]
+            letters_combination = test_combinations[indice]
             for combination in color_combinations:
                 check_combination = [0, 0, 0, 0]
                 check_index = 0

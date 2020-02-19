@@ -37,7 +37,7 @@ def ai_vs_man():
     elif ai_option == 1:
         worst_case(current_column, shield_row)
     elif ai_option == 2:
-        own_strategy(current_column, shield_row)
+        own_strategy(current_column, shield_row, color_combinations[0])
 
 
 def print_board():

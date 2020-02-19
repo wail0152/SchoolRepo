@@ -102,5 +102,24 @@ def worst_case(col, sr):
         simple_strategy(col, sr, question_combinations[largest_partition.index(min(largest_partition))])
 
 
-def own_strategy(col, sr):
-    return simple_strategy(col, sr, color_combinations[random.randrange(0, len(color_combinations))])
+def own_strategy(col, sr, move):
+    pins = get_feedback(move, sr)
+    game_board[col] = move
+    print("The computer guessed", move)
+    new_combinations = []
+
+    for combination in color_combinations:
+        if get_feedback(move, combination) == pins:
+            new_combinations.append(combination)
+
+    old_moves.append(move)
+
+    for combination_index in range(len(new_combinations)):
+        for old_move in old_moves:
+            if get_feedback(move, old_move) != pins:
+                new_combinations.remove(new_combinations[combination_index])
+
+    color_combinations.clear()
+    color_combinations.extend(new_combinations)
+
+    check_win(col, pins[0])

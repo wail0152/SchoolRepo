@@ -99,7 +99,7 @@ def worst_case(col, sr):
 
     indices = [i for i, v in enumerate(largest_partition) if v == min(largest_partition)]
     right_combination = ()
-
+    counter = 0
     while right_combination == ():
         for indice in indices:
             letters_combination = test_combinatios[indice]
@@ -115,7 +115,8 @@ def worst_case(col, sr):
             else:
                 continue
             break
-        indices = [i for i, v in enumerate(largest_partition) if v == min(largest_partition) + 1]
+        counter += 1
+        indices = [i for i, v in enumerate(largest_partition) if v == min(largest_partition) + counter]
 
     simple_strategy(col, sr, right_combination)
 
